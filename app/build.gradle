@@ -23,11 +23,25 @@ android {
 }
 
 dependencies {
+    def room_version = "2.1.0-alpha03"
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
     implementation 'com.google.android.material:material:1.1.0-alpha02'
+
+    // Guava
+    api 'com.google.guava:guava:27.0.1-jre'
+
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version" // kapt for Kotlin
+    // implementation "androidx.room:room-rxjava2:$room_version" // RxJava support
+    implementation "androidx.room:room-guava:$room_version" // Guava support
+    // implementation "androidx.room:room-coroutines:$room_version" // Coroutines support
+    testImplementation "androidx.room:room-testing:$room_version" // test helpers
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
