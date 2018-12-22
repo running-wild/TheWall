@@ -1,12 +1,12 @@
-package io.runningwild.thewall.database.entity
+package io.runningwild.thewall.persistence
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "stay_table")
-data class StayEntity(
+data class Stay(
     @PrimaryKey var uid: Int,
-    @ColumnInfo(name = "enter_date") var enterDate: String?,
+    @ColumnInfo(name = "entry_date") var entryDate: String?,
     @ColumnInfo(name = "leave_date") var leaveDate: String?
 )
