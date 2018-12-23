@@ -5,8 +5,9 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.runningwild.thewall.persistence.Stay
 import io.runningwild.thewall.persistence.StayDao
+import javax.inject.Inject
 
-class StayViewModel(private val dao: StayDao) : ViewModel() {
+class StayViewModel @Inject constructor(private val dao: StayDao) : ViewModel() {
 
     fun getAll(): Flowable<List<Stay>> {
         return dao.getAll()

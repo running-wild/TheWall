@@ -1,4 +1,4 @@
-package io.runningwild.thewall.ui.adapter
+package io.runningwild.thewall.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

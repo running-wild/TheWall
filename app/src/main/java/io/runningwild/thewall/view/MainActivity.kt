@@ -1,17 +1,18 @@
-package io.runningwild.thewall.ui
+package io.runningwild.thewall.view
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import io.runningwild.thewall.Injection
 import io.runningwild.thewall.R
 import io.runningwild.thewall.viewmodel.StayViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +20,8 @@ class MainActivity : AppCompatActivity() {
         private val TAG = MainActivity::class.java.simpleName
     }
 
-    private lateinit var viewModelFactory: ViewModelFactory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: StayViewModel
 
@@ -28,9 +30,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        viewModelFactory = Injection.provideViewModelFactory(this)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(StayViewModel::class.java)
+        
+        viewModel = ViewModelProviders.of(this, viewModelFactory)[StayViewModel::class.java]
 
         button_add_stay.setOnClickListener { addStay() }
     }

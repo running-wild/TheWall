@@ -1,4 +1,4 @@
-package io.runningwild.thewall.ui
+package io.runningwild.thewall.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import io.runningwild.thewall.R
-import io.runningwild.thewall.ui.adapter.StayListAdapter
+import io.runningwild.thewall.view.adapter.StayListAdapter
 
 class MainFragment : Fragment() {
 
