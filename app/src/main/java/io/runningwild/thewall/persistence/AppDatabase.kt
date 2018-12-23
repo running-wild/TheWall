@@ -24,7 +24,6 @@ abstract class AppDatabase : RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 AppDatabase::class.java, "the-wall.db"
-            )
-                .build()
+            ).build()
     }
 }
