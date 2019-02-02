@@ -26,53 +26,53 @@ android {
 }
 
 dependencies {
+    def appcompat_version = "1.1.0-alpha01"
+    def constraintlayout_version = "2.0.0-alpha3"
+    def material_version = "1.1.0-alpha02"
     def lifecycle_version = "2.0.0"
     def room_version = "2.1.0-alpha03"
     def dagger_version = "2.16"
-
+    def rxandroid_version = "2.1.0"
+    def rxjava_version = "2.2.0"
+    def guava_version = "27.0.1-android"
+    def timber_version = "4.7.1"
+    def test_junit_version = "4.12"
+    def test_runner_version = "1.1.1"
+    def test_espresso_version = "3.1.1"
+    
+    // Android Libs
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
-    implementation 'com.google.android.material:material:1.1.0-alpha02'
-
-    // implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+    implementation "com.google.android.material:material:$material_version"
 
     // Lifecycle
-    // ViewModel and LiveData
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
-    // optional - ReactiveStreams support for LiveData
-    // implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version" // use -ktx for Kotlin
-    // optional - Test helpers for LiveData
-    // testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    kapt "android.arch.lifecycle:compiler:$lifecycle_version"
 
     // Room
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    implementation "android.arch.persistence.room:runtime:$room_version"
     implementation "androidx.room:room-rxjava2:$room_version"
-    // optional - Guava support for Room, including Optional and ListenableFuture
-    // implementation "androidx.room:room-guava:$room_version"
-    // optional - Coroutines support for Room
-    // implementation "androidx.room:room-coroutines:$room_version"
-    // Test helpers
-    // testImplementation "androidx.room:room-testing:$room_version"
-
-    // RxJava
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
+    kapt "android.arch.persistence.room:compiler:$room_version"
 
     // Dagger 2
-    implementation "com.google.dagger:dagger:$dagger_version"
     implementation "com.google.dagger:dagger-android:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
-    // Guava
-    api 'com.google.guava:guava:27.0.1-android'
+    // RxJava RxAndroid
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    // Guava
+    api "com.google.guava:guava:$guava_version"
+
+    // Timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // Test
+    testImplementation "junit:junit:$test_junit_version"
+    androidTestImplementation "androidx.test:runner:$test_runner_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$test_espresso_version"
 }

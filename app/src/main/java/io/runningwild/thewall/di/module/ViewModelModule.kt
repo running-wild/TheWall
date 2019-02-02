@@ -1,16 +1,16 @@
-package io.runningwild.thewall.injection.builder
+package io.runningwild.thewall.di.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import io.runningwild.thewall.injection.module.ViewModelFactory
-import io.runningwild.thewall.injection.module.ViewModelKey
+import io.runningwild.thewall.di.ViewModelFactory
+import io.runningwild.thewall.di.ViewModelKey
 import io.runningwild.thewall.viewmodel.StayViewModel
 
 @Module
-abstract class ViewModelBuilder {
+abstract class ViewModelModule {
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
@@ -18,5 +18,5 @@ abstract class ViewModelBuilder {
     @Binds
     @IntoMap
     @ViewModelKey(StayViewModel::class)
-    abstract fun stayViewModel(viewModel: StayViewModel): ViewModel
+    abstract fun bindStayViewModel(viewModel: StayViewModel): ViewModel
 }

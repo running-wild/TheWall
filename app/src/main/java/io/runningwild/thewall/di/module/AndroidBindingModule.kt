@@ -1,12 +1,12 @@
-package io.runningwild.thewall.injection.builder
+package io.runningwild.thewall.di.module
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import io.runningwild.thewall.view.MainActivity
 
 @Module
-abstract class ActivityBuilder {
+abstract class AndroidBindingModule {
 
     @ContributesAndroidInjector
-    abstract fun contributeMainActivityInjector(): MainActivity
+    abstract fun contributeMainActivity(): MainActivity
 }

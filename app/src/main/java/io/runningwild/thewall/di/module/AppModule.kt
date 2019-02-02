@@ -1,4 +1,4 @@
-package io.runningwild.thewall.injection.module
+package io.runningwild.thewall.di.module
 
 import android.app.Application
 import android.content.Context
@@ -7,10 +7,11 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class ContextModule {
+class AppModule {
+
     @Provides
     @Singleton
-    internal fun provideContext(application: Application): Context {
+    internal fun provideApplication(application: Application): Context {
         return application
     }
 }
