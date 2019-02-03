@@ -1,10 +1,10 @@
 package io.runningwild.thewall.di
 
-import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
+import dagger.android.support.AndroidSupportInjectionModule
 import io.runningwild.thewall.TheWallApplication
-import io.runningwild.thewall.di.module.AndroidBindingModule
+import io.runningwild.thewall.di.module.ActivityBuilderModule
 import io.runningwild.thewall.di.module.AppModule
 import io.runningwild.thewall.di.module.AppProviderModule
 import io.runningwild.thewall.di.module.ViewModelModule
@@ -13,23 +13,15 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = arrayOf(
-        AndroidInjectionModule::class,
+        AndroidSupportInjectionModule::class,
         AppModule::class,
+        ActivityBuilderModule::class,
         AppProviderModule::class,
-        AndroidBindingModule::class,
         ViewModelModule::class
     )
 )
-interface AppComponent {
+internal interface AppComponent : AndroidInjector<TheWallApplication> {
 
     @Component.Builder
-    interface Builder {
-
-        @BindsInstance
-        fun application(application: TheWallApplication): Builder
-
-        fun build(): AppComponent
-    }
-
-    fun inject(app: TheWallApplication)
+    abstract class Builder : AndroidInjector.Builder<TheWallApplication>()
 }

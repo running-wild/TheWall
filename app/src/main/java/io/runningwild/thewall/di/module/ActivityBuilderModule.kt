@@ -5,8 +5,8 @@ import dagger.android.ContributesAndroidInjector
 import io.runningwild.thewall.view.MainActivity
 
 @Module
-abstract class AndroidBindingModule {
+abstract class ActivityBuilderModule {
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [(FragmentBuilderModule::class)])
     abstract fun contributeMainActivity(): MainActivity
 }

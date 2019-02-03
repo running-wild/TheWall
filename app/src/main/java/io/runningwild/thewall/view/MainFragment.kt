@@ -12,6 +12,8 @@ import io.runningwild.thewall.view.adapter.StayListAdapter
 class MainFragment : Fragment() {
 
     companion object {
+        val TAG = MainFragment::class.java.simpleName
+
         fun newInstance(): MainFragment {
             return MainFragment()
         }

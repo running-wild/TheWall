@@ -1,24 +1,13 @@
 package io.runningwild.thewall
 
-import android.app.Activity
-import android.app.Application
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 import io.runningwild.thewall.di.DaggerAppComponent
-import javax.inject.Inject
 
-class TheWallApplication : Application(), HasActivityInjector {
 
-    @Inject
-    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+class TheWallApplication : DaggerApplication() {
 
-    override fun onCreate() {
-        super.onCreate()
-        DaggerAppComponent.builder()
-            .application(this)
-            .build()
-            .inject(this)
+    override fun applicationInjector(): AndroidInjector<out TheWallApplication> {
+        return DaggerAppComponent.builder().create(this)
     }
-
-    override fun activityInjector(): DispatchingAndroidInjector<Activity> = activityInjector
 }

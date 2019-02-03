@@ -2,10 +2,9 @@ package io.runningwild.thewall.view
 
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -15,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
@@ -30,11 +29,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        AndroidInjection.inject(this)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[StayViewModel::class.java]
 
         button_add_stay.setOnClickListener { addStay() }
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.container_fragment, MainFragment.newInstance(), MainFragment.TAG)
+            .commit()
     }
 
     override fun onStart() {
@@ -45,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { Log.d(TAG, "Stay list: $it") },
-                    { error -> Log.e(TAG, "Unable to fetch stay.", error)})
+                    { error -> Log.e(TAG, "Unable to fetch stay.", error) })
         )
     }
 
