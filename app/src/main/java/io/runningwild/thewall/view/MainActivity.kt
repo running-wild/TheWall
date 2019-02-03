@@ -1,7 +1,6 @@
 package io.runningwild.thewall.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerAppCompatActivity
@@ -11,14 +10,11 @@ import io.reactivex.schedulers.Schedulers
 import io.runningwild.thewall.R
 import io.runningwild.thewall.viewmodel.StayViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
-
-    companion object {
-        private val TAG = MainActivity::class.java.simpleName
-    }
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -47,8 +43,8 @@ class MainActivity : DaggerAppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { Log.d(TAG, "Stay list: $it") },
-                    { error -> Log.e(TAG, "Unable to fetch stay.", error) })
+                    { Timber.d("Stay list: $it") },
+                    { error -> Timber.e(error, "Unable to fetch stay.") })
         )
     }
 
@@ -72,7 +68,7 @@ class MainActivity : DaggerAppCompatActivity() {
                     { error ->
                         run {
                             button_add_stay.isEnabled = true
-                            Log.e(TAG, "Unable to insert stay.", error)
+                            Timber.e(error, "Unable to insert stay.")
                         }
                     })
         )
