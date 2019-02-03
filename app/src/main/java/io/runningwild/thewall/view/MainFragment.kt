@@ -1,5 +1,6 @@
 package io.runningwild.thewall.view
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +17,17 @@ import io.runningwild.thewall.viewmodel.StayViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import timber.log.Timber
 import java.util.*
+import java.util.Calendar.*
 import javax.inject.Inject
+import android.text.format.DateFormat
+
 
 class MainFragment : DaggerFragment() {
 
     companion object {
         val TAG = MainFragment::class.java.simpleName
+
+        const val DATE_FORMAT = "hh:mm:ss:SSS a, EEE dd MMM, yyyy"
 
         fun newInstance(): MainFragment {
             return MainFragment()
@@ -36,31 +42,30 @@ class MainFragment : DaggerFragment() {
 
     private lateinit var buttonAddStay: FloatingActionButton
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[StayViewModel::class.java]
-    }
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_main, container, false)
 
         buttonAddStay = rootView.findViewById(R.id.button_add_stay)
-        buttonAddStay.setOnClickListener { addStay() }
+        buttonAddStay.setOnClickListener { showDatePickerDialog() }
 
         return rootView
     }
 
-    private fun addStay() {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)[StayViewModel::class.java]
+    }
+
+    private fun addStay(entry: Date, leave: Date) {
         button_add_stay.isEnabled = false
 
-        val entryDate = Date().toString()
-        val leaveDate = Date().toString()
-
+        val dateFormat = DateFormat.getDateFormat(activity)
         disposable.add(
-            viewModel.insert(entryDate, leaveDate)
+            viewModel.insert(dateFormat.format(entry), dateFormat.format(leave))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -72,5 +77,21 @@ class MainFragment : DaggerFragment() {
                         }
                     })
         )
+    }
+
+    private fun showDatePickerDialog() {
+        val calendar = Calendar.getInstance()
+        val dialog = DatePickerDialog(
+            activity,
+            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                calendar.set(YEAR, year)
+                calendar.set(MONTH, month)
+                calendar.set(DAY_OF_MONTH, dayOfMonth)
+                val date = Date(calendar.timeInMillis)
+                addStay(date, date)
+            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        dialog.show()
+
     }
 }
