@@ -1,6 +1,5 @@
 package io.runningwild.thewall.di
 
-import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -27,7 +26,7 @@ interface AppComponent {
     interface Builder {
 
         @BindsInstance
-        fun application(application: Application): Builder
+        fun application(application: TheWallApplication): Builder
 
         fun build(): AppComponent
     }

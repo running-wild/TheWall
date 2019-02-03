@@ -10,7 +10,7 @@ import javax.inject.Inject
 class TheWallApplication : Application(), HasActivityInjector {
 
     @Inject
-    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
+    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
@@ -20,7 +20,5 @@ class TheWallApplication : Application(), HasActivityInjector {
             .inject(this)
     }
 
-    override fun activityInjector(): DispatchingAndroidInjector<Activity> {
-        return dispatchingActivityInjector
-    }
+    override fun activityInjector(): DispatchingAndroidInjector<Activity> = activityInjector
 }
