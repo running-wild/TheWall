@@ -1,7 +1,9 @@
 package io.runningwild.thewall.view
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,15 +21,11 @@ import timber.log.Timber
 import java.util.*
 import java.util.Calendar.*
 import javax.inject.Inject
-import android.text.format.DateFormat
-
 
 class MainFragment : DaggerFragment() {
 
     companion object {
         val TAG = MainFragment::class.java.simpleName
-
-        const val DATE_FORMAT = "hh:mm:ss:SSS a, EEE dd MMM, yyyy"
 
         fun newInstance(): MainFragment {
             return MainFragment()
@@ -81,17 +79,28 @@ class MainFragment : DaggerFragment() {
 
     private fun showDatePickerDialog() {
         val calendar = Calendar.getInstance()
-        val dialog = DatePickerDialog(
-            activity,
-            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                calendar.set(YEAR, year)
-                calendar.set(MONTH, month)
-                calendar.set(DAY_OF_MONTH, dayOfMonth)
-                val date = Date(calendar.timeInMillis)
-                addStay(date, date)
+        val dialog = DatePickerDialog(activity as Context,
+            DatePickerDialog.OnDateSetListener { _, entryYear, entryMonth, entryDayOfMonth ->
+                calendar.set(YEAR, entryYear)
+                calendar.set(MONTH, entryMonth)
+                calendar.set(DAY_OF_MONTH, entryDayOfMonth)
+                val entryDate = Date(calendar.timeInMillis)
+
+                val dialog = DatePickerDialog(activity as Context,
+                    DatePickerDialog.OnDateSetListener { _, leaveYear, leaveMonth, leaveDayOfMonth ->
+                        calendar.set(YEAR, leaveYear)
+                        calendar.set(MONTH, leaveMonth)
+                        calendar.set(DAY_OF_MONTH, leaveDayOfMonth)
+                        val leaveDate = Date(calendar.timeInMillis)
+
+                        addStay(entryDate, leaveDate)
+                    }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
+                )
+                dialog.setTitle(getString(R.string.leave))
+                dialog.show()
             }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
         )
+        dialog.setTitle(getString(R.string.entry))
         dialog.show()
-
     }
 }

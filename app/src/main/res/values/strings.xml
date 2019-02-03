@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">The Wall</string>
+
+    <string name="entry">Entry</string>
+    <string name="leave">Leave</string>
+
     <string name="action_settings">Settings</string>
+
 </resources>
