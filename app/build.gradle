@@ -37,6 +37,7 @@ dependencies {
     def rxjava_version = "2.2.0"
     def guava_version = "27.0.1-android"
     def timber_version = "4.7.1"
+    def stetho_version = "1.5.0"
     def test_junit_version = "4.12"
     def test_runner_version = "1.1.1"
     def test_espresso_version = "3.1.1"
@@ -72,6 +73,9 @@ dependencies {
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // Stetho
+    implementation "com.facebook.stetho:stetho:$stetho_version"
 
     // Test
     testImplementation "junit:junit:$test_junit_version"
