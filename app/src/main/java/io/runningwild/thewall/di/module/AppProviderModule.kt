@@ -5,7 +5,7 @@ import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import io.runningwild.thewall.persistence.AppDatabase
-import io.runningwild.thewall.persistence.dao.StayDao
+import io.runningwild.thewall.persistence.StayDao
 import javax.inject.Singleton
 
 @Module

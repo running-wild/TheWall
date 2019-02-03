@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.runningwild.thewall.R
-import io.runningwild.thewall.persistence.model.Stay
+import io.runningwild.thewall.persistence.Stay
 import kotlinx.android.synthetic.main.item_stay.view.*
 
 class StayListAdapter(private val context: Context) : RecyclerView.Adapter<ViewHolder>() {

@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { Log.d(TAG, "Stay list: " + it.toString()) },
+                    { Log.d(TAG, "Stay list: $it") },
                     { error -> Log.e(TAG, "Unable to fetch stay.", error)})
         )
     }

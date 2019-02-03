@@ -1,4 +1,4 @@
-package io.runningwild.thewall.persistence.model
+package io.runningwild.thewall.persistence
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

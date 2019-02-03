@@ -21,11 +21,6 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(
-            R.layout.fragment_main, container,
-            false)
-        val recyclerView = view.findViewById(R.id.recycler_view_stay_list) as RecyclerView
-        recyclerView.adapter = StayListAdapter(context!!)
-        return view
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 }
