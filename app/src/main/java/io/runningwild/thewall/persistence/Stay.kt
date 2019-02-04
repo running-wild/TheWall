@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "stay_table")
 data class Stay(
-    @PrimaryKey var uid: Int,
+    @PrimaryKey(autoGenerate = true) var id: Int?,
     @ColumnInfo(name = "entry_date") var entryDate: String?,
     @ColumnInfo(name = "leave_date") var leaveDate: String?
 )

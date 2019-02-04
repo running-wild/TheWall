@@ -10,7 +10,7 @@ class StayRepository @Inject constructor(private val dao: StayDao) {
 
     fun insert(entryDate: String, leaveDate: String) : Completable {
         return Completable.fromAction {
-            dao.insert(Stay(0, entryDate, leaveDate))
+            dao.insert(Stay(null, entryDate, leaveDate))
         }
     }
 }
