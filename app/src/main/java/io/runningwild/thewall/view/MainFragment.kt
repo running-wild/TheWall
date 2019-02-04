@@ -14,6 +14,7 @@ import dagger.android.support.DaggerFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import io.runningwild.thewall.Constants.VISA_WAIVER_PROGRAM_MAX_STAY_IN_DAYS
 import io.runningwild.thewall.R
 import io.runningwild.thewall.viewmodel.StayViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -79,14 +80,14 @@ class MainFragment : DaggerFragment() {
 
     private fun showDatePickerDialog() {
         val calendar = Calendar.getInstance()
-        val dialog = DatePickerDialog(activity as Context,
+        val entryDialog = DatePickerDialog(activity as Context,
             DatePickerDialog.OnDateSetListener { _, entryYear, entryMonth, entryDayOfMonth ->
                 calendar.set(YEAR, entryYear)
                 calendar.set(MONTH, entryMonth)
                 calendar.set(DAY_OF_MONTH, entryDayOfMonth)
                 val entryDate = Date(calendar.timeInMillis)
 
-                val dialog = DatePickerDialog(activity as Context,
+                val leaveDialog = DatePickerDialog(activity as Context,
                     DatePickerDialog.OnDateSetListener { _, leaveYear, leaveMonth, leaveDayOfMonth ->
                         calendar.set(YEAR, leaveYear)
                         calendar.set(MONTH, leaveMonth)
@@ -96,11 +97,16 @@ class MainFragment : DaggerFragment() {
                         addStay(entryDate, leaveDate)
                     }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
                 )
-                dialog.setTitle(getString(R.string.leave))
-                dialog.show()
+                leaveDialog.setTitle(getString(R.string.leave))
+                leaveDialog.datePicker.minDate = calendar.timeInMillis
+
+                calendar.add(DAY_OF_YEAR, VISA_WAIVER_PROGRAM_MAX_STAY_IN_DAYS - 1)
+                leaveDialog.datePicker.maxDate = calendar.timeInMillis
+
+                leaveDialog.show()
             }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
         )
-        dialog.setTitle(getString(R.string.entry))
-        dialog.show()
+        entryDialog.setTitle(getString(R.string.entry))
+        entryDialog.show()
     }
 }
