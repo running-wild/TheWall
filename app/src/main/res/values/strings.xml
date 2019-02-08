@@ -4,6 +4,10 @@
     <string name="entry">Entry</string>
     <string name="leave">Leave</string>
 
-    <string name="action_settings">Settings</string>
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_dashboard">Dashboard</string>
+    <string name="navigation_drawer_calendar">Calendar</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 </resources>
