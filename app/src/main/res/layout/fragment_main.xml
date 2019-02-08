@@ -4,33 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainFragment"
-    tools:showIn="@layout/activity_main">
+    android:padding="32dp"
+    tools:context=".view.MainActivity"
+    tools:showIn="@layout/fragment_main">
 
-    <!--<androidx.recyclerview.widget.RecyclerView-->
-    <!--android:id="@+id/recycler_view_stay_list"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-    <!--tools:listitem="@layout/item_stay" />-->
-
-    <TextView
+    <LinearLayout
+        android:id="@+id/group_input_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_add_stay"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_stay_entry" />
+
+        <EditText
+            android:id="@+id/edit_text_input_entry"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:hint="@string/entry_date" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/group_input_leave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/group_input_entry">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_stay_leave" />
+
+        <EditText
+            android:id="@+id/edit_text_input_leave"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:hint="@string/leave_date" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

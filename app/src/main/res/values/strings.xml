@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">The Wall</string>
 
-    <string name="entry">Entry</string>
-    <string name="leave">Leave</string>
+    <string name="entry_date">Entry Date</string>
+    <string name="leave_date">Leave Date</string>
+
+    <!-- Menu -->
+    <string name="action_save">Save</string>
 
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_dashboard">Dashboard</string>
