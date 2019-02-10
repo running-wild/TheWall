@@ -42,7 +42,7 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         nav_view.setCheckedItem(R.id.nav_dashboard)
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.container_fragment, InputFragment.newInstance(), InputFragment.TAG)
+            .replace(R.id.container_fragment, DashboardFragment.newInstance(), DashboardFragment.TAG)
             .commit()
     }
 
@@ -76,7 +76,7 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
             R.id.nav_dashboard -> {
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.container_fragment, InputFragment.newInstance(), InputFragment.TAG)
+                    .replace(R.id.container_fragment, DashboardFragment.newInstance(), DashboardFragment.TAG)
                     .commit()
             }
             R.id.nav_calendar -> {
