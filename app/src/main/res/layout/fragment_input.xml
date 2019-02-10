@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="32dp"
     tools:context=".view.MainActivity"
-    tools:showIn="@layout/fragment_main">
+    tools:showIn="@layout/fragment_input">
 
     <LinearLayout
         android:id="@+id/group_input_entry"

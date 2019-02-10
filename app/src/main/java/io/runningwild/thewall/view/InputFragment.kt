@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.runningwild.thewall.R
 import io.runningwild.thewall.viewmodel.StayViewModel
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_input.*
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
@@ -50,7 +50,7 @@ class InputFragment : DaggerFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_main, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_input, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
